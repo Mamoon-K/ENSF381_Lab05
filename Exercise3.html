@@ -21,7 +21,7 @@ here..."/>
         if (e.key == 'Enter') {
             text.innerHTML = e.target.value;
             retrieveData();
-            text2.value = '';
+            
         }
     }
 
@@ -53,16 +53,16 @@ here..."/>
         try{
             let response = await fetch('https://67c1fd0d61d8935867e4ff7c.mockapi.io/users_api');
             let data = await response.json(); // parse the response data as JSON, wait for this asynchronous operation to complete.
-           console.log(data[0])
-           console.log(text2.value)
-            if (a.key == 'Enter') {
-                //for(var i=0; i<data.length; i++){
+           console.log(data[0]);
+           console.log(text2.value);
+            
+                for(var i=0; i<data.length; i++){
                     if (data[i].id == text2.value){
                         text.innerHTML = "ID: " + data[i].id + ", Name: " + data[i].first_name + ", Group: " + data[i].user_group;
                     }
-                //}
+                }
                 text2.value = '';
-            }}
+            }
         catch(error){
             console.log(text.innerHTML = "No users were found with the provided User_ID.");
              //handle any errors that occur during the fetch operation.  

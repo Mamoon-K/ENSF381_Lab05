@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab5 - Exercise 1</title>
+</head>
+<body>
+<input type="text" id="textInput" placeholder="Type something
+here..."/>
+<label id="textLabel"></label>
+<button id="redButton">Red</button>
+<button id="blueButton">Blue</button>
+<button id="greenButton">Green</button>
+<button id="orangeButton">Orange</button>
+<button id="purpleButton">Purple</button>
+</body>
+<script type="text/javascript">
+    var text = document.getElementById('textLabel');
+    var text2 = document.getElementById('textInput');
+    
+    function updateTextLabel(e) {
+        if (e.key == 'Enter') {
+            text.innerHTML = e.target.value;
+            retrieveData();
+            text2.value = '';
+        }
+    }
+
+    text2.addEventListener('keydown', updateTextLabel);
+
+// Adding a click event listener
+    var red = document.getElementById('redButton');
+     red.addEventListener('click', function() {
+        text.style.color ='red';
+    });
+    var blue = document.getElementById('blueButton');
+    blue.addEventListener('click', function() {
+        text.style.color = 'blue';
+    });
+    var green = document.getElementById('greenButton');
+    green.addEventListener('click', function() {
+        text.style.color = 'green';
+    });
+    var orange = document.getElementById('orangeButton');
+    orange.addEventListener('click', function() {
+        text.style.color = 'orange';
+    });
+    var purple = document.getElementById('purpleButton');
+    purple.addEventListener('click', function() {
+        text.style.color = 'purple';
+    });
+
+    async function retrieveData(){
+        try{
+            let response = await fetch('https://67c1fd0d61d8935867e4ff7c.mockapi.io/:endpoint');
+            let data = await response.json(); // parse the response data as JSON, wait for this asynchronous operation to complete.
+           console.log(data[0])
+           console.log(text2.value)
+            if (a.key == 'Enter') {
+                for(var i=0; i<data.length; i++){
+                    if (data[i].id == text2.value){
+                        text.innerHTML = "ID: " + data[i].id + ", Name: " + data[i].first_name + ", Group: " + data[i].user_group;
+                    }
+                }
+                text2.value = '';
+            }}
+        catch(error){
+            console.log(text.innerHTML = "No users were found with the provided User_ID.");
+             //handle any errors that occur during the fetch operation.  
+        }}
+
+    // text2.addEventListener('keydown', retrieveData);        
+
+</script>
+</html>
+
+
+
+
